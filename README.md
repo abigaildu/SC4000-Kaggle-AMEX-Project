@@ -24,7 +24,13 @@ The objective of this project is to predict whether a customer will default on a
 
 The project uses the **American Express Default Prediction** dataset provided for the Kaggle competition. This is the link to the dataset: https://www.kaggle.com/competitions/amex-default-prediction/
 
-The dataset contains millions of customer financial records with monthly behavioural and transaction-related features. Customer-level features were aggregated before model training to create a single record per customer.
+Dataset Statistics:
+5.5+ million transaction records
+458,913 unique customers after aggregation
+190 financial and behavioural features
+Binary classification task (Default / No Default)
+
+To prepare the data for model training, customer-level features were aggregated from multiple monthly observations into a single record for each customer.
 
 ---
 
@@ -37,6 +43,8 @@ The dataset contains millions of customer financial records with monthly behavio
 * LightGBM
 * XGBoost
 * CatBoost
+* Optuna
+* Matplotlib
 * Jupyter Notebook
 
 ---
@@ -48,11 +56,12 @@ The project includes the following stages:
 * Data cleaning and preprocessing
 * Exploratory Data Analysis (EDA)
 * Feature engineering
-* Customer-level feature aggregation
+* Missing value handling
+* One-hot encoding of selected categorical features
 * Model training
-* Hyperparameter tuning
+* Hyperparameter tuning using Optuna
 * Ensemble learning
-* Performance evaluation using the AMEX Default Score
+* Performance evaluation using the AMEX competition metric
 
 ---
 
@@ -71,13 +80,19 @@ The ensemble model achieved the best overall performance among the evaluated mod
 
 * `sc4000_main.ipynb` – Complete machine learning workflow
 * `SC4000 Project Report - Group 17.pdf` – Project report
-* `submission_ensemble_perc.csv` – Final competition submission
 
 ---
 
 ## Results
 
 The final solution combines multiple gradient boosting models into an ensemble, resulting in improved predictive performance compared to the individual baseline models.
+
+| Model        | Baseline AMEX |   Tuned AMEX |
+| ------------ | ------------: | -----------: |
+| LightGBM     |      0.794310 |     0.795962 |
+| XGBoost      |      0.792682 |     0.795224 |
+| CatBoost     |      0.792617 |     0.794574 |
+| **Ensemble** |             — | **0.796716** |
 
 This project demonstrates practical experience in:
 
